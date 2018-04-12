@@ -12,6 +12,7 @@ class ChatMessage(object):
         return "%s (%s): %s" % (self.user, self.time, self.message)
 
 Messages = []
+serviceStartedTimeStamp = 0
 
 class ChatRoomPage(webapp.RequestHandler):
     def get(self):
@@ -24,7 +25,8 @@ class ChatRoomPage(webapp.RequestHandler):
                 <body>
                     <h1>Welome to Georg's AppEngine Chat Room</h1>
                     <p> The current time is: %s</p>
-            """ % (datetime.datetime.now()))
+                    <p> The service started at: %s</p>
+            """ % (datetime.datetime.now(), serviceStartedTimeStamp))
         # Output the set of chat messages
         global Messages
         for msg in Messages:
@@ -50,11 +52,13 @@ class ChatRoomPage(webapp.RequestHandler):
         self.redirect('/')
 
             
-chatapp = webapp.WSGIApplication([('/',ChatRoomPage)])
+chatapp = webapp.WSGIApplication([(r'/.*',ChatRoomPage)])
 
-def main():
+def main():    
     run_wsgi_app(chatapp)
 
 
 if __name__ == "__main__":
+    global serviceStartedTimeStamp 
+    serviceStartedTimeStamp = datetime.datetime.now()
     main()
