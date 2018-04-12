@@ -4,4 +4,4 @@ threadsafe: false
 
 handlers:
 - url: /.*
-  script: chatonewa.py
+  script: chattwo.py
