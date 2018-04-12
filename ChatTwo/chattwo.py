@@ -49,7 +49,7 @@ class ChatRoomPage(webapp.RequestHandler):
         global Messages
         Messages.append(ChatMessage(chatter, msg))
         # Redirect to the root page to refresh the content
-        self.redirect('/')
+        self.redirect('/AufgabeEinsVonGeorgBraun')
 
             
 chatapp = webapp.WSGIApplication([(r'/.*',ChatRoomPage)])
