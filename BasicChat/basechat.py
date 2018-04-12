@@ -51,14 +51,14 @@ class ChatUser(object):
             cm = ChatMessage(self, text)
             room.addMessage(cm)
         else:
-            raise ChatError("User &s not subscribed to chat %s" % (self.username, roomname))
+            raise ChatError("User %s not subscribed to chat %s" % (self.username, roomname))
 
     def displayChat(self, roomname, out):
         if roomname in self.rooms:
             room = self.rooms[roomname]
             room.printMessages(out)
         else:
-            raise ChatError("User &s not subscribed to chat %s" % (self.username, roomname))
+            raise ChatError("User %s not subscribed to chat %s" % (self.username, roomname))
 
 
 
