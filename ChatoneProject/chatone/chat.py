@@ -14,7 +14,7 @@ print '<head>'
 print '<title>Welcome to MarkCC\'s chat service</title>'
 print '</head>'
 print '<body>'
-print '<h1>Welcome to MarkCC\'s chat service</h1>'
+print '<h1>Welcome to GeorgsCC\'s chat service</h1>'
 print ''
 print 'Current timee is: %s' % (datetime.datetime.now())
 print '</body>'
