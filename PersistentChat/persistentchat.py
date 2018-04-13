@@ -1,6 +1,7 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
+from google.appengine.api import mail
 import datetime
 
 class ChatMessage(db.Model):
@@ -115,7 +116,7 @@ class ChatRoomTimeViewPage(webapp.RequestHandler):
                     <p> The service started at: %s</p>
             """ % (datetime.datetime.now(), serviceStartedTimeStamp))
         # Output the set of chat messages
-        messages = ChatMessage.gql("WHERE timestamp > :fiveago ORDER BY time", fiveago=datetime.datetime.now() - datetime.timedelta(minutes=5))
+        messages = ChatMessage.gql("WHERE timestamp > :fiveago ORDER BY timestamp", fiveago=datetime.datetime.now()-datetime.timedelta(minutes=5))
         for msg in messages:
             self.response.out.write("<p>%s</p>" % msg)
         self.response.out.write("""
