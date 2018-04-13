@@ -1,0 +1,10 @@
+runtime: python27
+api_version: 1
+threadsafe: false
+
+handlers:
+- url: /.*
+  script: persistentchat.py
+
+#- url: /.*
+#script: chattwo.py
