@@ -130,10 +130,31 @@ class ChatRoomTimeViewPage(webapp.RequestHandler):
             </body>
             </html>
         """)
-            
+
+
+class SendMailHandler(webapp.RequestHandler):
+    def get(self):
+        mail.send_mail("Georg.Braun92@gmail.com", "Georg.Braun@alumni.fh-aachen.de",
+            "Hi Georg", "This is a message from the cloud. I'm still there :D")
+      
+        self.response.headers["Content-Type"] = "text/html"
+        self.response.out.write(
+            """<html>
+                <head>
+                    <title>Georg's AppEngine EMail-Service</title>
+                </head>
+                <body>
+                    <p>Mail sent</p>
+                </body>
+                </html>""")
+
+
+
+
 chatapp = webapp.WSGIApplication([  ('/', ChatRoomPoster),
                                     ('/limited/count', ChatRoomCountViewPage),
-                                    ('/limited/time', ChatRoomTimeViewPage)])
+                                    ('/limited/time', ChatRoomTimeViewPage),
+                                    ('/email', SendMailHandler)])
 
 def main():    
     run_wsgi_app(chatapp)
